@@ -14,6 +14,17 @@ function toLinkResponse(link: Link) {
   };
 }
 
+function toStatsResponse(link: Link) {
+  return {
+    code: link.code,
+    originalUrl: link.originalUrl,
+    totalClicks: link.clickCount,
+    createdAt: link.createdAt,
+    lastAccessedAt: link.lastAccessedAt,
+    expiresAt: link.expiresAt,
+  };
+}
+
 export const linkController = {
   async create(req: Request, res: Response) {
     const input: CreateLinkInput = req.body; // req.body é `any`; o validateBody já garantiu o formato
@@ -24,5 +35,15 @@ export const linkController = {
   async redirect(req: Request<{ code: string }>, res: Response) {
     const originalUrl = await linkService.resolve(req.params.code);
     res.redirect(302, originalUrl);
+  },
+
+  async stats(req: Request<{ code: string }>, res: Response) {
+    const link = await linkService.getStats(req.params.code);
+    res.json(toStatsResponse(link));
+  },
+
+  async remove(req: Request<{ code: string }>, res: Response) {
+    await linkService.remove(req.params.code);
+    res.status(204).send();
   },
 };

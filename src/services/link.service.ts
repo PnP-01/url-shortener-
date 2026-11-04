@@ -40,4 +40,16 @@ export const linkService = {
     await linkRepository.registerClick(code);
     return link.originalUrl;
   },
+
+  /** Estatísticas continuam disponíveis mesmo depois de o link expirar. */
+  async getStats(code: string): Promise<Link> {
+    const link = await linkRepository.findByCode(code);
+    if (!link) throw new NotFoundError('Link não encontrado');
+    return link;
+  },
+
+  async remove(code: string): Promise<void> {
+    const deleted = await linkRepository.deleteByCode(code);
+    if (!deleted) throw new NotFoundError('Link não encontrado');
+  },
 };

@@ -30,4 +30,10 @@ export const linkRepository = {
       data: { clickCount: { increment: 1 }, lastAccessedAt: new Date() },
     });
   },
+
+  /** Retorna true se removeu um link, false se o código não existia. */
+  async deleteByCode(code: string): Promise<boolean> {
+    const { count } = await prisma.link.deleteMany({ where: { code } });
+    return count > 0;
+  },
 };

@@ -8,3 +8,6 @@ export const linkRouter = Router();
 
 // O rate limit vem ANTES da validação: requisições inválidas também contam no limite.
 linkRouter.post('/', createLinkRateLimiter, validateBody(createLinkSchema), linkController.create);
+
+linkRouter.get('/:code/stats', linkController.stats);
+linkRouter.delete('/:code', linkController.remove);
