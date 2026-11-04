@@ -1,0 +1,14 @@
+node_modules
+dist
+.git
+.github
+.env
+*.db
+*.db-journal
+coverage
+tests
+vitest.config.mts
+Dockerfile
+.dockerignore
+docker-compose.yml
+README.md

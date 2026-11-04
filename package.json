@@ -5,16 +5,16 @@
   "main": "dist/server.js",
   "type": "commonjs",
   "scripts": {
-     "dev": "tsx watch src/server.ts",
-  "build": "tsc -p tsconfig.build.json",
-  "start": "node dist/server.js",
-  "typecheck": "tsc --noEmit",
-  "test": "vitest run",
-  "test:watch": "vitest",
-  "lint": "eslint .",
-  "format": "prettier --write .",
-  "db:migrate": "prisma migrate dev",
-  "db:generate": "prisma generate"
+    "dev": "tsx watch src/server.ts",
+    "build": "tsc -p tsconfig.build.json",
+    "start": "node dist/server.js",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "lint": "eslint .",
+    "format": "prettier --write .",
+    "db:migrate": "prisma migrate dev",
+    "db:generate": "prisma generate"
   },
   "license": "ISC",
   "dependencies": {
