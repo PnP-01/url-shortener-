@@ -5,13 +5,16 @@
   "main": "dist/server.js",
   "type": "commonjs",
   "scripts": {
-    "dev": "tsx watch src/server.ts",
-    "build": "tsc",
-    "start": "node dist/server.js",
-    "lint": "eslint .",
-    "format": "prettier --write .",
-    "db:migrate": "prisma migrate dev",
-    "db:generate": "prisma generate"
+     "dev": "tsx watch src/server.ts",
+  "build": "tsc -p tsconfig.build.json",
+  "start": "node dist/server.js",
+  "typecheck": "tsc --noEmit",
+  "test": "vitest run",
+  "test:watch": "vitest",
+  "lint": "eslint .",
+  "format": "prettier --write .",
+  "db:migrate": "prisma migrate dev",
+  "db:generate": "prisma generate"
   },
   "license": "ISC",
   "dependencies": {
@@ -25,12 +28,15 @@
     "@eslint/js": "^10.0.1",
     "@types/express": "^5.0.6",
     "@types/node": "^26.6.6",
+    "@types/supertest": "^7.2.1",
     "eslint": "^10.14.0",
     "eslint-config-prettier": "^10.1.8",
     "prettier": "^3.9.10",
     "prisma": "^6.19.3",
+    "supertest": "^7.3.1",
     "tsx": "^4.23.15",
     "typescript": "^6.0.3",
-    "typescript-eslint": "^8.72.1"
+    "typescript-eslint": "^8.72.1",
+    "vitest": "^5.1.0"
   }
 }
