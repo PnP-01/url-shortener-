@@ -19,7 +19,7 @@ RUN npm run build
 
 
 # ---------- Estágio 2: runtime ----------
-# Imagem final: só dependências de produção + código compilado.
+# Imagem final: só dependências de produção + código compilado + interface web.
 FROM node:22-bookworm-slim AS runtime
 WORKDIR /app
 
@@ -38,6 +38,7 @@ COPY prisma ./prisma
 RUN npx prisma generate
 
 COPY --from=build /app/dist ./dist
+COPY public ./public
 
 # Roda como usuário sem privilégios; o banco SQLite fica no volume /data.
 USER node

@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Encurtador de links</title>
+    <meta
+      name="description"
+      content="Encurte links, escolha o endereço, defina quando eles expiram e acompanhe os cliques."
+    />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&family=JetBrains+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <main>
+      <h1>Cole um link longo, receba um curto</h1>
+      <p class="lead">
+        Escolha o endereço, defina quando o link expira e veja quantas pessoas clicaram.
+      </p>
+
+      <form id="create-form" novalidate>
+        <div class="tape">
+          <label class="sr-only" for="url">Link para encurtar</label>
+          <input
+            id="url"
+            name="url"
+            type="url"
+            inputmode="url"
+            autocomplete="off"
+            spellcheck="false"
+            placeholder="https://exemplo.com/um/endereco/bem/longo"
+            aria-describedby="url-count"
+          />
+          <button class="btn" id="submit" type="submit">Encurtar link</button>
+        </div>
+        <p class="count" id="url-count"></p>
+
+        <div class="options">
+          <div class="field">
+            <label for="alias">Endereço personalizado <span>(opcional)</span></label>
+            <div class="affix">
+              <span class="affix-prefix" id="alias-prefix"></span>
+              <input
+                id="alias"
+                name="alias"
+                type="text"
+                maxlength="30"
+                autocomplete="off"
+                spellcheck="false"
+                placeholder="meu-link"
+              />
+            </div>
+          </div>
+          <div class="field">
+            <label for="expires">Expira em <span>(opcional)</span></label>
+            <input id="expires" name="expires" type="datetime-local" />
+          </div>
+        </div>
+
+        <p class="error" id="form-error" role="alert" hidden></p>
+      </form>
+
+      <section class="result" id="result" aria-labelledby="result-title" aria-live="polite" hidden>
+        <h2 id="result-title">Link criado</h2>
+        <div class="short-row">
+          <a
+            class="short"
+            id="short-link"
+            target="_blank"
+            rel="noopener noreferrer"
+          ></a>
+          <button class="btn btn-quiet" id="copy-button" type="button">Copiar link</button>
+        </div>
+        <p class="result-note" id="compare-text"></p>
+        <div class="bars" aria-hidden="true">
+          <div class="bar-row">
+            <span>Original</span>
+            <span class="bar-track"><span class="bar-fill bar-fill-long" id="bar-long"></span></span>
+          </div>
+          <div class="bar-row">
+            <span>Curto</span>
+            <span class="bar-track"><span class="bar-fill bar-fill-short" id="bar-short"></span></span>
+          </div>
+        </div>
+        <p class="result-note" id="result-expiry"></p>
+      </section>
+
+      <section class="links" aria-labelledby="links-title">
+        <div class="links-head">
+          <h2 id="links-title">Seus links neste navegador</h2>
+          <button class="btn btn-quiet btn-small" id="refresh-button" type="button" hidden>
+            Atualizar cliques
+          </button>
+        </div>
+        <p class="hint">Os links que você cria aqui ficam salvos só neste navegador.</p>
+        <p class="error" id="list-error" role="alert" hidden></p>
+        <ol class="rows" id="links-list"></ol>
+        <p class="empty" id="empty-state">
+          Nenhum link ainda. Cole um endereço acima e o link curto aparece aqui, com a contagem de
+          cliques.
+        </p>
+      </section>
+    </main>
+    <script type="module" src="/app.js"></script>
+  </body>
+</html>
